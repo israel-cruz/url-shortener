@@ -2,6 +2,6 @@
 
 <form method="POST" action="">
     {% csrf_token %}
-    {{form.link}}
+    <input type="text" id="link" name='link'>
     <input type="submit" value="Shorten">
 </form>

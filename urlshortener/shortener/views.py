@@ -1,18 +1,17 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse
+
 from .models import Url
-from .forms import UrlForm
+
+import uuid
 
 def shortener(request):
-    form = UrlForm()
-
     if request.method == 'POST':
-        form = UrlForm()
-        if form.is_valid():
-            return HttpResponseRedirect('/Thanks/')
+        link = request.POST['link']
+        uid = str(uuid.uuid4())[:5]
+        new_url = Url(link=link, uuid=uid)
+        new_url.save()
+        return HttpResponse(uid)
 
-    context = {
-        'form':form,
-    }
+    return render(request, 'shortener/shortener.html')
 
-    return render(request, 'shortener/shortener.html', context)
