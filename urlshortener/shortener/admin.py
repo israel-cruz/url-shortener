@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import Url
 
-# Register your models here.
+class UrlAdmin(admin.ModelAdmin):
+    list_display = ('link', 'uuid', 'created')
+    readonly_fields = ('created',)
+
+admin.site.register(Url, UrlAdmin)

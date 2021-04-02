@@ -1,0 +1,7 @@
+<h1>URL Shortener</h1>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    {{form.link}}
+    <input type="submit" value="Shorten">
+</form>
